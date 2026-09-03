@@ -2,8 +2,16 @@ def registrarPersonas():
     individuo={}
     nombre=input("Ingresa tu nombre: ")
     individuo["Nombre"]=nombre
+    #Validar edad
     edad=int(input("Ingresa tu edad: "))
-    individuo["Edad"]=edad
+    edadValida=False
+    while edadValida!=True:
+        if(edad<18):
+            print("No aceptamos menores de edad")
+            edad=int(input("Ingresa tu edad: "))
+        elif (edad>=18):
+            edadValida=True       
+            individuo["Edad"]=edad
     ciudad=input("Ingresa tu ciudad: ")
     individuo["Ciudad"]=ciudad
     genero=input("Ingresa tu género: ")
@@ -25,16 +33,25 @@ def mostrarPersonas(personas):
     print(personas)
 
 def main():
-    cuantasPersonas=int(input("Ingresa cuantas personas vas a registrar"))
-    #Registrando Personas
-    personas={}
-    for i in range (0,cuantasPersonas):
-        print("i",i)
-        print(personas)
-        personas[i]= registrarPersonas()
-    #Mostrar Personas
-    mostrarPersonas(personas)
-
-    print()
-
+    opciones="1. Regitrar Persona \n2. Mostrar las personas \n9. Salir"
+    print(opciones)
+    opcion=int(input("Digite la opción que necesitas: "))
+    while opcion!=9:
+        if opcion==1:
+            registrarPersonas()
+        
+            cuantasPersonas=int(input("Ingresa cuantas personas vas a registrar"))
+            #Registrando Personas
+            personas={}
+            for i in range (0,cuantasPersonas):
+                print("i",i)
+                print(personas)
+                personas[i]= registrarPersonas()
+            #Mostrar Personas
+            mostrarPersonas(personas)
+        elif opcion==9:
+            print("Gracias")
+            break
+        print(opciones)
+        opcion=int(input("Digite la opcion que necesita"))
 main()
